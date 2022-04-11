@@ -1,0 +1,12 @@
+---
+- name: 
+  hosts: local
+  connection: local
+  become: true
+  
+  package:
+    name:
+      - unzip
+      - net-tools
+    state: present
+
