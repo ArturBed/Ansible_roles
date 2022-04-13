@@ -1,16 +1,7 @@
 ---
-- name: Inst tools 
-  hosts: local
-  connection: local
-  become: true
-
-  tasks:
-    - name: Install unzip 
-      package:
-        name: unzip
-        state: present
-    - name: Install net-tools
-      package:
-        name: net-tools
-        state: present
-
+ - name: Inst tools
+   package:
+     name:
+       - unzip
+       - net-tools
+     state: present

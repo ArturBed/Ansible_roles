@@ -1,22 +1,19 @@
 ---
-- name: Creating user Panda and group panada 
-  hosts: local
-  connection: local
-  become: true
-  
-  group:
-    name: panda
-    state: present
-  
-- name: Creating user pnada
-  user: panda
-  shell: /bin/bash
-  groups:
-    - panda
-    - sudo
+ - name: Creating user Panda and group panada
+   group:
+     name: "panda"
+     state: present
 
-- name: Auth
-  authorized_key:
-  user: panda
-  state: present
-  key: "{{ lookup('file', '/home/vagrant/.ssh/authorized_keys') }}"
+
+ - name: Creating user pnada
+   user:
+     name: panda
+     shell: /bin/bash
+     groups: sudo,panda
+     append: yes
+
+ - name: auth keys
+   ansible.posix.authorized_key:
+     user: panda
+     state: present
+     key: "{{ lookup('file', '/home/vagrant/.ssh/authorized_keys') }}"
